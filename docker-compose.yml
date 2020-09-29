@@ -1,0 +1,25 @@
+services:
+  web:
+    image: dockerimage:latest
+    ports:
+      - 5000:5000
+    networks:
+      - pacman-network
+
+  db:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - db-data:/data
+    networks:
+      - pacman-network
+    ports:
+      - 5001:5001
+
+volumes:
+  db-data:
+
+networks:
+  pacman-network:
