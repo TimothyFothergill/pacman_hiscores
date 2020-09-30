@@ -1,5 +1,13 @@
 services:
-  web:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_reverseproxy
+    ports:
+      - 80:80
+    networks:
+      - pacman-network
+
+  pacman-hiscores-webapp:
     image: dockerimage:latest
     ports:
       - 5000:5000
@@ -7,7 +15,7 @@ services:
       - pacman-network
 
   db:
-    image: mongo
+    image: mongo:latest
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
@@ -16,7 +24,7 @@ services:
     networks:
       - pacman-network
     ports:
-      - 5001:5001
+      - 27017:27017
 
 volumes:
   db-data:

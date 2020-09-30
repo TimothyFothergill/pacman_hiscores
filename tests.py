@@ -1,4 +1,5 @@
 import unittest
+import main
 
 
 class Tests(unittest.TestCase):
@@ -6,5 +7,9 @@ class Tests(unittest.TestCase):
         self.assertTrue(True)
 
     def test_01_reach_main(self):
+        main.hello_world()
+
+    def test_02_reach_api(self):
         pass
+
 
