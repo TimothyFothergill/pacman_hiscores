@@ -1,0 +1,12 @@
+body{
+    background-color: lightblue;
+}
+.header{
+    font-size: 42px;
+}
+.footer{
+    font-size: 10px;
+}
+.right{
+    float: right;
+}

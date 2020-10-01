@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pac-Man Score Tracker</title>
+        <link rel="stylesheet" type="text/css" href="static/style.css" />
+    </head>
+    <body>
+        {% include "header.html" %}
+        {% include "menu.html" %}
+
+        <h2>Pacman Score Tracker</h2>
+        <p>If you have a high score in Pacman, share it with us using the Submit Scores page!</p><br />
+        <br />
+        <h3>About This Site</h3>
+        <p>This website is written in Python with HTML templates. There is a Mongodb database attached to this site, using
+        docker containers for the website, the Mongodb database and a load balancer.
+        Code is available on <a href="https://github.com/TimothyFothergill/pacman_hiscores/">GitHub</a>.</p>
+
+        {% include "footer.html" %}
+    </body>
+</html>
