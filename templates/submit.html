@@ -9,10 +9,11 @@
 {% include "menu.html" %}
 <h1>Submit Your Pacman Score!</h1>
 <form name="submit-score" method="post" action="/received"><br />
-    Username: <br /> <input type="text" name="username" value="username"> <br />
+    Username: <br /> <input type="text" name="username"> <br />
     Score: <br /> <input type="number" name="score" value="score" max="3333360"> <br />
-    Email Address: <br /> <input type="email" name="email" value="email"> <br />
+    Email Address: <br /> <input type="email" name="email"> <br />
     Image: <br /> <input type="file" accept=".png, .jpg, .jpeg, .gif" name="image"> <br />
+    <br />
     <input type="submit" name="submit" value="submit" />
 </form>
 

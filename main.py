@@ -31,12 +31,10 @@ def scores_api():
     }
 
 
-@app.route("/submit", methods=["GET", "POST"])
+@app.route("/submit", methods=["GET"])
 def submit_page():
     return render_template("submit.html")
 
-
-# username, score, email, image
 
 @app.route("/received", methods=["POST"])
 def score_received():
@@ -46,11 +44,11 @@ def score_received():
         email = request.form["email"]
         image = request.form["image"]
         if int(score) > 3333360:
-            # Flask Flash may be appropriate, if the user tries to provide something invalid.
+            # Flask Flash may be appropriate, if the user tries to provide something invalid. HTML5 does enough for now.
             return redirect("/submit")
         save_image(image)
     database.add_to_database(username, score, email, image)
-    return "Score received"
+    return render_template("received.html")
 
 
 @app.route("/list", methods=["GET"])
