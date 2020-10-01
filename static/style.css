@@ -7,3 +7,6 @@ body{
 .footer{
     font-size: 10px;
 }
+.right{
+    float: right;
+}

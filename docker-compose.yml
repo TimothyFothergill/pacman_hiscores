@@ -2,6 +2,10 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx_reverseproxy
+    depends_on:
+      - pacman-hiscores-webapp
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
     networks:
@@ -11,6 +15,8 @@ services:
     image: dockerimage:latest
     ports:
       - 5000:5000
+    environment:
+      - FLASK_APP=main.py
     networks:
       - pacman-network
 
@@ -20,11 +26,12 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
     volumes:
-      - db-data:/data
+      - ./data:/data/db
     networks:
       - pacman-network
     ports:
       - 27017:27017
+    command: mongod --port 27017 --bind_ip 0.0.0.0
 
 volumes:
   db-data:

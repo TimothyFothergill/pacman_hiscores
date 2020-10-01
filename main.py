@@ -12,11 +12,22 @@ def hello_world():
 
 @app.route("/api/")
 def scores_api():
-    data = database.show_all_database_documents()
+    usernames = []
+    scores = []
+    emails = []
+    images = []
+    for document in database.col.find():
+        usernames.append(document.get("username"))
+        scores.append(document.get("score"))
+        emails.append(document.get("email"))
+        images.append(document.get("image"))
     return {
-        "Scores": {
-            "Test": "data1"
-            }
+        "data": {
+            "username": usernames,
+            "scores": scores,
+            "emails": emails,
+            "images": images
+        }
     }
 
 
@@ -35,7 +46,7 @@ def score_received():
         email = request.form["email"]
         image = request.form["image"]
         if int(score) > 3333360:
-            # Built in Flask function Flash may be appropriate, if the user tries to enter something invalid.
+            # Flask Flash may be appropriate, if the user tries to provide something invalid.
             return redirect("/submit")
         save_image(image)
     database.add_to_database(username, score, email, image)
@@ -44,7 +55,17 @@ def score_received():
 
 @app.route("/list", methods=["GET"])
 def list_scores():
-    pass
+    usernames = []
+    scores = []
+    emails = []
+    images = []
+    for document in database.col.find():
+        usernames.append(document.get("username"))
+        scores.append(document.get("score"))
+        emails.append(document.get("email"))
+        images.append(document.get("image"))
+    record = [usernames, scores, emails, images]
+    return render_template("list.html", list=record)
 
 
 @app.route("/about")
